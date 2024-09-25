@@ -1,0 +1,47 @@
+[1/11] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\Client\Desktop\MCPWM\sample_project\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5250 bytes. 0x2db0 bytes (36%) free.
+[2/9] Building C object esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj
+FAILED: esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj 
+ccache C:\Espressif\tools\xtensa-esp-elf\esp-13.2.0_20230928\xtensa-esp-elf\bin\xtensa-esp32s3-elf-gcc.exe -DESP_PLATFORM -DIDF_VER=\"v5.2.1-dirty\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -IC:/Users/Client/Desktop/MCPWM/sample_project/build/config -IC:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/newlib/platform_include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/esp_additions/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include/soc -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include/soc/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/port/esp32s3/. -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/heap/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/log/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/soc/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/soc/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/soc/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/hal/platform_port/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/hal/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/hal/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/include/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_common/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/port/soc -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/port/include/private -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/deprecated_include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include/apps -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include/apps/sntp -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/lwip/src/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/freertos/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include/arch -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include/sys -mlongcalls  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=C:/Users/Client/Desktop/MCPWM/sample_project=. -fmacro-prefix-map=C:/Espressif/frameworks/esp-idf-v5.2.1=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj -MF esp-idf\CLI\CMakeFiles\__idf_CLI.dir\FreeRTOS_CLI.c.obj.d -o esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj -c C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c:96:36: error: 'configCOMMAND_INT_MAX_OUTPUT_SIZE' undeclared here (not in a function)
+   96 |         static char cOutputBuffer[ configCOMMAND_INT_MAX_OUTPUT_SIZE ];
+      |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include/freertos/portable.h:57,
+                 from C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include/freertos/FreeRTOS.h:69,
+                 from C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c:32:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c: In function 'FreeRTOS_CLIRegisterCommand':
+C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:455:53: error: too few arguments to function 'vPortEnterCritical'
+  455 | #define portENTER_CRITICAL(mux)                     vPortEnterCritical(mux)
+      |                                                     ^~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:236:44: note: in expansion of macro 'portENTER_CRITICAL'
+  236 | #define taskENTER_CRITICAL( x )            portENTER_CRITICAL( x )
+      |                                            ^~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c:119:17: note: in expansion of macro 'taskENTER_CRITICAL'
+  119 |                 taskENTER_CRITICAL();
+      |                 ^~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:569:51: note: declared here
+  569 | static inline void __attribute__((always_inline)) vPortEnterCritical(portMUX_TYPE *mux)
+      |                                                   ^~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:456:53: error: too few arguments to function 'vPortExitCritical'
+  456 | #define portEXIT_CRITICAL(mux)                      vPortExitCritical(mux)
+      |                                                     ^~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include/freertos/task.h:250:44: note: in expansion of macro 'portEXIT_CRITICAL'
+  250 | #define taskEXIT_CRITICAL( x )             portEXIT_CRITICAL( x )
+      |                                            ^~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c:136:17: note: in expansion of macro 'taskEXIT_CRITICAL'
+  136 |                 taskEXIT_CRITICAL();
+      |                 ^~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:243:6: note: declared here
+  243 | void vPortExitCritical(portMUX_TYPE *mux);
+      |      ^~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c: In function 'FreeRTOS_CLIGetOutputBuffer':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c:223:1: error: control reaches end of non-void function [-Werror=return-type]
+  223 | }
+      | ^
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c: At top level:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/FreeRTOS_CLI.c:96:21: warning: 'cOutputBuffer' defined but not used [-Wunused-variable]
+   96 |         static char cOutputBuffer[ configCOMMAND_INT_MAX_OUTPUT_SIZE ];
+      |                     ^~~~~~~~~~~~~
+cc1.exe: some warnings being treated as errors
+ninja: build stopped: subcommand failed.

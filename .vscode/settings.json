@@ -1,0 +1,15 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.adapterTargetName": "esp32s3",
+  "files.associations": {
+    "multscan_shell.h": "c",
+    "freertos.h": "c",
+    "queue.h": "c",
+    "system_error": "c",
+    "esp_log.h": "c",
+    "freertos_cli.h": "c",
+    "stdlib.h": "c",
+    "task.h": "c",
+    "esp_err.h": "c"
+  }
+}
