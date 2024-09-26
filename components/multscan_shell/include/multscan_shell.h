@@ -46,6 +46,7 @@ multscan_sts multscan_envia_msg(const char *mensagem);
 
 static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 // Função para registrar os comandos CLI
 void registerCLICommands(void);
 void cli_task(void *pvParameters);
@@ -64,6 +65,13 @@ static const CLI_Command_Definition_t exitCommandDefinition = {
     "exit: Sai do terminal CLI.\r\n",  // Descrição do comando
     exitCommand,  // Função de callback
     0  // Número de argumentos esperados (0 neste caso)
+};
+
+static const CLI_Command_Definition_t setCommandDefinition = {
+    "set",
+    "set <param1> <param2>: Exemplo de comando que aceita dois argumentos\r\n",
+    setCommand,
+    2
 };
 
 

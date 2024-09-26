@@ -67,7 +67,7 @@ multscan_sts multscan_envia_msg(const char *mensagem) {
 }
 
 static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
-    const char *message = "Comando recebido: Olá, Mundo!\r\n";
+    const char *message = "Comando recebido: Ola, Mundo!\r\n";
     snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
     return pdFALSE;  // pdFALSE indica que não há mais dados para enviar
 }
@@ -76,6 +76,7 @@ static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, cons
 void registerCLICommands(void) {
     FreeRTOS_CLIRegisterCommand(&helloCommandDefinition);
     FreeRTOS_CLIRegisterCommand(&exitCommandDefinition);
+    FreeRTOS_CLIRegisterCommand(&setCommandDefinition);
 }
 
 
@@ -85,6 +86,7 @@ void cli_task(void *pvParameters) {
     char outputBuffer[CLI_BUFFER_SIZE] = {0};
     int bytesRead = 0;
     int cursor = 0;
+    uart_write_bytes(UART_NUM_1, "multscan-shell>> ", strlen("multscan-shell>> "));
 
     while (1) {
         
@@ -106,6 +108,7 @@ void cli_task(void *pvParameters) {
                 memset(inputBuffer, 0, CLI_BUFFER_SIZE);
                 cursor = 0;  // Reseta o cursor
                 uart_flush(UART_NUM_1);
+                uart_write_bytes(UART_NUM_1, "multscan-shell>> ", strlen("multscan-shell>> "));
             } else {
                 cursor++;  // Incrementa o cursor para o próximo caractere
                 if (cursor >= CLI_BUFFER_SIZE) {
@@ -128,6 +131,33 @@ static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const
     return pdFALSE;
 }
 
+
+static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
+    const char *param1;
+    const char *param2;
+    BaseType_t xParamLen1, xParamLen2, xResult;
+
+
+    // Extraindo o primeiro argumento (param1)
+    param1 = FreeRTOS_CLIGetParameter(pcCommandString, 1, &xParamLen1);
+    // Extraindo o segundo argumento (param2)
+    param2 = FreeRTOS_CLIGetParameter(pcCommandString, 2, &xParamLen2);
+
+
+    if (param1 == NULL || param2 == NULL) {
+        snprintf(pcWriteBuffer, xWriteBufferLen, "Erro: parâmetros inválidos.\r\n");
+    } else {
+        // Aqui você pode adicionar a lógica para lidar com os argumentos
+        int numero1 = atoi(param1);
+        int numero2 = atoi(param2);
+
+        int resultado = numero1 + numero2;
+
+        snprintf(pcWriteBuffer, xWriteBufferLen, "Comando set recebido: Resultado: %d\r\n", resultado);
+    }
+
+    return pdFALSE;  // pdFALSE indica que não há mais dados a serem enviados
+}
 
 
 #endif
