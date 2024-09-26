@@ -1,0 +1,60 @@
+[1/10] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\tiago\OneDrive\Documentos\REPOSITORIOS\MCPWM-CLI\build\bootloader\esp-idf\esptool_py && E:\Espressif\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5250 bytes. 0x2db0 bytes (36%) free.
+[2/8] Building C object esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/multscan_shell.c: In function 'setCommand':
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/multscan_shell.c:139:40: warning: unused variable 'xResult' [-Wunused-variable]
+  139 |     BaseType_t xParamLen1, xParamLen2, xResult;
+      |                                        ^~~~~~~
+[3/8] Linking C static library esp-idf\multscan_shell\libmultscan_shell.a
+[4/8] Generating ld/sections.ld
+[5/8] Linking CXX executable main.elf
+[6/8] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/main.bin
+[7/8] cmd.exe /C "cd /D C:\Users\tiago\OneDrive\Documentos\REPOSITORIOS\MCPWM-CLI\build\esp-idf\esptool_py && E:\Espressif\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/partition_table/partition-table.bin C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/main.bin"
+main.bin binary size 0x42cc0 bytes. Smallest app partition is 0x100000 bytes. 0xbd340 bytes (74%) free.
+[7/8] cmd.exe /C "cd /D E:\Espressif\Espressif\frameworks\esp-idf-v5.2.1\components\esptool_py && E:\Espressif\Espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1 -D SERIAL_TOOL=E:/Espressif/Espressif/python_env/idf5.2_py3.11_env/Scripts/python.exe;;E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=defaesptool.py --chip esp32s3 -p COM14 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 2MB 0x0 bootloader/bootloader.bin 0x10000 main.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.7.0
+Serial port COM14
+Connecting....
+Chip is ESP32-S3 (QFN56) (revision v0.2)
+Features: WiFi, BLE, Embedded PSRAM 8MB (AP_3v3)
+Crystal is 40MHz
+MAC: 84:fc:e6:6b:bf:bc
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00000000 to 0x00005fff...
+Flash will be erased from 0x00010000 to 0x00052fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 21072 bytes to 13076...
+Writing at 0x00000000... (100 %)
+Wrote 21072 bytes (13076 compressed) at 0x00000000 in 0.6 seconds (effective 297.9 kbit/s)...
+Hash of data verified.
+Compressed 273600 bytes to 134296...
+Writing at 0x00010000... (11 %)
+Writing at 0x0001c92d... (22 %)
+Writing at 0x000252f8... (33 %)
+Writing at 0x0002bb2d... (44 %)
+Writing at 0x0003217a... (55 %)
+Writing at 0x0003c25d... (66 %)
+Writing at 0x00044f81... (77 %)
+Writing at 0x0004ad6c... (88 %)
+Writing at 0x000514c5... (100 %)
+Wrote 273600 bytes (134296 compressed) at 0x00010000 in 3.1 seconds (effective 696.4 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.0 seconds (effective 537.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+ult_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build -P E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esptool_py/run_serial_tool.cmake"

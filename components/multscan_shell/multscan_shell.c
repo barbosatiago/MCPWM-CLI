@@ -77,6 +77,7 @@ void registerCLICommands(void) {
     FreeRTOS_CLIRegisterCommand(&helloCommandDefinition);
     FreeRTOS_CLIRegisterCommand(&exitCommandDefinition);
     FreeRTOS_CLIRegisterCommand(&setCommandDefinition);
+    FreeRTOS_CLIRegisterCommand(&ajudaCommandDefinition);
 }
 
 
@@ -159,32 +160,54 @@ static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const 
     return pdFALSE;  // pdFALSE indica que não há mais dados a serem enviados
 }
 
-// static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
-//     // Buffer temporário para armazenar a saída dos comandos
-//     static const CLI_Command_Definition_t *pxCommand = NULL;
-//     BaseType_t xReturn;
+static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
+    // const char *message = 
+    // "+------------------------------------------------+\r\n"
+    // "|          Lista de Comandos do Sistema           |\r\n"
+    // "+------------------------------------------------+\r\n"
+    // "|  hello:   | Exibe uma mensagem de saudação.     |\r\n"
+    // "|  exit:    | Sai do terminal CLI.                |\r\n"
+    // "|  set:     | Exemplo de comando que aceita       |\r\n"
+    // "|           | dois argumentos: set <param1> <param2> |\r\n"
+    // "|  ajuda:   | Lista todos os comandos disponíveis.|\r\n"
+    // "+------------------------------------------------+\r\n";
+    // const char *message = 
+    // "=== Lista de Comandos do Sistema ===\r\n"
+    // "hello        : Exibe uma mensagem de saudacao.\r\n"
+    // "exit         : Sai do terminal CLI.\r\n"
+    // "set <p1> <p2>: Exemplo de comando que aceita dois argumentos.\r\n"
+    // "ajuda        : Lista todos os comandos disponíveis.\r\n"
+    // "===================================\r\n";
 
-//     // Verifica se a lista de comandos já foi percorrida
-//     if (pxCommand == NULL) {
-//         // Pega o primeiro comando da lista
-//         pxCommand = FreeRTOS_CLIGetCommandByIndex(0);
-//     } else {
-//         // Pega o próximo comando da lista
-//         pxCommand = FreeRTOS_CLIGetNextCommand(pxCommand);
-//     }
+    const char *message = 
+    "==================================================\r\n"
+    "|              Lista de Comandos do Sistema       |\r\n"
+    "==================================================\r\n"
+    "| Comando                     | Descrição        |\r\n"
+    "--------------------------------------------------\r\n"
+    "| hello                       | Exibe uma        |\r\n"
+    "|                              | mensagem de      |\r\n"
+    "|                              | saudação.        |\r\n"
+    "--------------------------------------------------\r\n"
+    "| exit                        | Sai do terminal  |\r\n"
+    "|                              | CLI.             |\r\n"
+    "--------------------------------------------------\r\n"
+    "| set <param1> <param2>        | Exemplo de       |\r\n"
+    "|                              | comando que      |\r\n"
+    "|                              | aceita dois      |\r\n"
+    "|                              | argumentos.      |\r\n"
+    "--------------------------------------------------\r\n"
+    "| ajuda                       | Lista todos os   |\r\n"
+    "|                              | comandos         |\r\n"
+    "|                              | disponíveis.     |\r\n"
+    "==================================================\r\n";
 
-//     if (pxCommand != NULL) {
-//         // Copia o nome do comando e a descrição para o buffer de saída
-//         snprintf(pcWriteBuffer, xWriteBufferLen, "%s: %s\r\n", pxCommand->pcCommand, pxCommand->pcHelpString);
-//         xReturn = pdTRUE;  // pdTRUE indica que há mais comandos para listar
-//     } else {
-//         // Reseta o ponteiro para permitir uma nova chamada no futuro
-//         pxCommand = NULL;
-//         xReturn = pdFALSE;  // pdFALSE indica que não há mais comandos
-//     }
+    snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
+    
 
-//     return xReturn;
-// }
+
+    return pdFALSE;
+}
 
 
 

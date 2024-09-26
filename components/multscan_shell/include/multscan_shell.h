@@ -35,7 +35,7 @@
 
 #define TXD_PIN                        (GPIO_NUM_43)
 #define RXD_PIN                        (GPIO_NUM_44)
-#define CLI_BUFFER_SIZE 100  // Tamanho dos buffers de entrada/saída
+#define CLI_BUFFER_SIZE 1000  // Tamanho dos buffers de entrada/saída
 
 typedef int multscan_sts;
 
@@ -47,7 +47,8 @@ multscan_sts multscan_envia_msg(const char *mensagem);
 static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
-//static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+
 // Função para registrar os comandos CLI
 void registerCLICommands(void);
 void cli_task(void *pvParameters);
@@ -73,6 +74,13 @@ static const CLI_Command_Definition_t setCommandDefinition = {
     "set <param1> <param2>: Exemplo de comando que aceita dois argumentos\r\n",
     setCommand,
     2
+};
+
+static const CLI_Command_Definition_t ajudaCommandDefinition = {
+    "ajuda",
+    "ajuda: Lista todos os comandos disponiveis\r\n",
+    helpCommand,
+    0
 };
 
 
