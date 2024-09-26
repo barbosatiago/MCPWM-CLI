@@ -279,8 +279,7 @@ const char *pcReturn = NULL;
 }
 /*-----------------------------------------------------------*/
 
-static BaseType_t prvHelpCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString )
-{
+static BaseType_t prvHelpCommand( char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString ) {
 static const CLI_Definition_List_Item_t * pxCommand = NULL;
 BaseType_t xReturn;
 

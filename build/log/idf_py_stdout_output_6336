@@ -1,0 +1,56 @@
+[1/14] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\tiago\OneDrive\Documentos\REPOSITORIOS\MCPWM-CLI\build\bootloader\esp-idf\esptool_py && E:\Espressif\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5250 bytes. 0x2db0 bytes (36%) free.
+[2/12] Building C object esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj
+FAILED: esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj 
+ccache E:\Espressif\Espressif\tools\xtensa-esp-elf\esp-13.2.0_20230928\xtensa-esp-elf\bin\xtensa-esp32s3-elf-gcc.exe -DESP_PLATFORM -DIDF_VER=\"v5.2.1-dirty\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -IC:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/config -IC:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/CLI/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/newlib/platform_include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/include/freertos -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/xtensa/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/esp_additions/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include/soc -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include/soc/esp32s3 -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/port/esp32s3/. -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/heap/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/log/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/soc/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/soc/esp32s3 -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/soc/esp32s3/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/hal/platform_port/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/hal/esp32s3/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/hal/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/include/esp32s3 -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/esp32s3 -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_common/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/port/soc -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/port/include/private -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/esp32s3/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/deprecated_include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include/apps -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include/apps/sntp -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/lwip/src/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/freertos/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include/arch -IE:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include/sys -mlongcalls  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI=. -fmacro-prefix-map=E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj -MF esp-idf\CLI\CMakeFiles\__idf_CLI.dir\FreeRTOS_CLI.c.obj.d -o esp-idf/CLI/CMakeFiles/__idf_CLI.dir/FreeRTOS_CLI.c.obj -c C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/CLI/FreeRTOS_CLI.c
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/CLI/FreeRTOS_CLI.c: In function 'prvHelpCommand':
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/CLI/FreeRTOS_CLI.c:289:21: error: implicit declaration of function 'FreeRTOS_CLIGetRegisteredCommands'; did you mean 'FreeRTOS_CLIRegisterCommand'? [-Werror=implicit-function-declaration]
+  289 |         pxCommand = FreeRTOS_CLIGetRegisteredCommands();
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     FreeRTOS_CLIRegisterCommand
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/CLI/FreeRTOS_CLI.c:289:19: warning: assignment to 'const CLI_Command_Definition_t *' {aka 'const struct xCOMMAND_LINE_INPUT *'} from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  289 |         pxCommand = FreeRTOS_CLIGetRegisteredCommands();
+      |                   ^
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/CLI/FreeRTOS_CLI.c:297:30: error: 'CLI_Command_Definition_t' {aka 'const struct xCOMMAND_LINE_INPUT'} has no member named 'pxNext'
+  297 |         pxCommand = pxCommand->pxNext;
+      |                              ^~
+cc1.exe: some warnings being treated as errors
+[3/12] Building C object esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/multscan_shell.c: In function 'setCommand':
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/multscan_shell.c:138:40: warning: unused variable 'xResult' [-Wunused-variable]
+  138 |     BaseType_t xParamLen1, xParamLen2, xResult;
+      |                                        ^~~~~~~
+[4/12] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c: In function 'init_mcpwm_par':
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:272:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  272 |         .on_reach = callback_mcpwm_par,
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:272:21: note: (near initialization for 'compare_callback_par.on_reach')
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c: In function 'init_mcpwm_impar':
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:372:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  372 |         .on_reach = callback_mcpwm_impar_leds,
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:372:21: note: (near initialization for 'compare_callback_impar.on_reach')
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c: In function 'callback_mcpwm_teste':
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:424:13: warning: unused variable 'controle_impar' [-Wunused-variable]
+  424 |     uint8_t controle_impar[BUFFER_CIRCULAR_SIZE] = {1, 0, 1, 0};
+      |             ^~~~~~~~~~~~~~
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:422:13: warning: unused variable 'controle_par' [-Wunused-variable]
+  422 |     uint8_t controle_par[BUFFER_CIRCULAR_SIZE] = {0, 1, 0, 1};
+      |             ^~~~~~~~~~~~
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:420:14: warning: unused variable 'CMD' [-Wunused-variable]
+  420 |     uint32_t CMD; // CMD dos tasks notify
+      |              ^~~
+In file included from C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/main/main.c:22:
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/include/multscan_shell.h: At top level:
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/include/multscan_shell.h:47:19: warning: 'helloCommand' used but never defined
+   47 | static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/include/multscan_shell.h:48:19: warning: 'exitCommand' used but never defined
+   48 | static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/components/multscan_shell/include/multscan_shell.h:49:19: warning: 'setCommand' used but never defined
+   49 | static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~
+ninja: build stopped: subcommand failed.

@@ -86,7 +86,7 @@ void cli_task(void *pvParameters) {
     char outputBuffer[CLI_BUFFER_SIZE] = {0};
     int bytesRead = 0;
     int cursor = 0;
-    uart_write_bytes(UART_NUM_1, "multscan-shell>> ", strlen("multscan-shell>> "));
+    uart_write_bytes(UART_NUM_1, "\nmultscan-shell>> ", strlen("\nmultscan-shell>> "));
 
     while (1) {
         
@@ -108,7 +108,7 @@ void cli_task(void *pvParameters) {
                 memset(inputBuffer, 0, CLI_BUFFER_SIZE);
                 cursor = 0;  // Reseta o cursor
                 uart_flush(UART_NUM_1);
-                uart_write_bytes(UART_NUM_1, "multscan-shell>> ", strlen("multscan-shell>> "));
+                uart_write_bytes(UART_NUM_1, "\nmultscan-shell>> ", strlen("\nmultscan-shell>> "));
             } else {
                 cursor++;  // Incrementa o cursor para o próximo caractere
                 if (cursor >= CLI_BUFFER_SIZE) {
@@ -158,6 +158,34 @@ static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const 
 
     return pdFALSE;  // pdFALSE indica que não há mais dados a serem enviados
 }
+
+// static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
+//     // Buffer temporário para armazenar a saída dos comandos
+//     static const CLI_Command_Definition_t *pxCommand = NULL;
+//     BaseType_t xReturn;
+
+//     // Verifica se a lista de comandos já foi percorrida
+//     if (pxCommand == NULL) {
+//         // Pega o primeiro comando da lista
+//         pxCommand = FreeRTOS_CLIGetCommandByIndex(0);
+//     } else {
+//         // Pega o próximo comando da lista
+//         pxCommand = FreeRTOS_CLIGetNextCommand(pxCommand);
+//     }
+
+//     if (pxCommand != NULL) {
+//         // Copia o nome do comando e a descrição para o buffer de saída
+//         snprintf(pcWriteBuffer, xWriteBufferLen, "%s: %s\r\n", pxCommand->pcCommand, pxCommand->pcHelpString);
+//         xReturn = pdTRUE;  // pdTRUE indica que há mais comandos para listar
+//     } else {
+//         // Reseta o ponteiro para permitir uma nova chamada no futuro
+//         pxCommand = NULL;
+//         xReturn = pdFALSE;  // pdFALSE indica que não há mais comandos
+//     }
+
+//     return xReturn;
+// }
+
 
 
 #endif

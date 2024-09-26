@@ -47,6 +47,7 @@ multscan_sts multscan_envia_msg(const char *mensagem);
 static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+//static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 // Função para registrar os comandos CLI
 void registerCLICommands(void);
 void cli_task(void *pvParameters);

@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "main",
-    "project_version":    "5a4b09b-dirty",
+    "project_version":    "805971c-dirty",
     "project_path":       "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI",
     "idf_path":           "E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1",
     "build_dir":          "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build",
