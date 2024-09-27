@@ -1,0 +1,77 @@
+[1/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'init_mcpwm_par':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:257:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  257 |         .on_reach = callback_mcpwm_par,
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:257:21: note: (near initialization for 'compare_callback_par.on_reach')
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'init_mcpwm_impar':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:357:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  357 |         .on_reach = callback_mcpwm_impar_leds,
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:357:21: note: (near initialization for 'compare_callback_impar.on_reach')
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'callback_mcpwm_teste':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:409:13: warning: unused variable 'controle_impar' [-Wunused-variable]
+  409 |     uint8_t controle_impar[BUFFER_CIRCULAR_SIZE] = {1, 0, 1, 0};
+      |             ^~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:407:13: warning: unused variable 'controle_par' [-Wunused-variable]
+  407 |     uint8_t controle_par[BUFFER_CIRCULAR_SIZE] = {0, 1, 0, 1};
+      |             ^~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:405:14: warning: unused variable 'CMD' [-Wunused-variable]
+  405 |     uint32_t CMD; // CMD dos tasks notify
+      |              ^~~
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:22:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h: At top level:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:47:19: warning: 'helloCommand' used but never defined
+   47 | static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:48:19: warning: 'exitCommand' used but never defined
+   48 | static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:49:19: warning: 'setCommand' used but never defined
+   49 | static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:50:19: warning: 'helpCommand' used but never defined
+   50 | static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+[2/7] Linking C static library esp-idf\main\libmain.a
+[3/7] Generating ld/sections.ld
+[4/7] Linking CXX executable main.elf
+[5/7] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/Client/Desktop/MCPWM/sample_project/build/main.bin
+[6/7] cmd.exe /C "cd /D C:\Users\Client\Desktop\MCPWM\sample_project\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Client/Desktop/MCPWM/sample_project/build/partition_table/partition-table.bin C:/Users/Client/Desktop/MCPWM/sample_project/build/main.bin"
+main.bin binary size 0x433c0 bytes. Smallest app partition is 0x100000 bytes. 0xbcc40 bytes (74%) free.
+[6/7] cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.2.1\components\esptool_py && C:\Espressif\tools\cmake\3.24.0\bin\cmake.exe -D IDF_PATH=C:/Espressif/frameworks/esp-idf-v5.2.1 -D SERIAL_TOOL=C:/Espressif/python_env/idf5.2_py3.11_env/Scripts/python.exe;;C:/Espressif/frameworks/esp-idf-v5.2.1/components/esesptool.py --chip esp32s3 -p COM33 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 2MB 0x10000 main.bin
+esptool.py v4.7.0
+Serial port COM33
+Connecting....
+Chip is ESP32-S3 (QFN56) (revision v0.1)
+Features: WiFi, BLE, Embedded PSRAM 2MB (AP_3v3)
+Crystal is 40MHz
+MAC: 68:b6:b3:29:5a:bc
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00010000 to 0x00053fff...
+Compressed 275392 bytes to 135064...
+Writing at 0x00010000... (11 %)
+Writing at 0x0001caed... (22 %)
+Writing at 0x0002533a... (33 %)
+Writing at 0x0002bbce... (44 %)
+Writing at 0x00032276... (55 %)
+Writing at 0x0003c3d9... (66 %)
+Writing at 0x00045208... (77 %)
+Writing at 0x0004b059... (88 %)
+Writing at 0x00051722... (100 %)
+Wrote 275392 bytes (135064 compressed) at 0x00010000 in 3.1 seconds (effective 700.8 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+ptool_py/esptool/esptool.py;--chip;esp32s3 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@app-flash_args -D WORKING_DIRECTORY=C:/Users/Client/Desktop/MCPWM/sample_project/build -P C:/Espressif/frameworks/esp-idf-v5.2.1/components/esptool_py/run_serial_tool.cmake"

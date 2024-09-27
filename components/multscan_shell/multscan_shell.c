@@ -74,10 +74,11 @@ static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, cons
 
 // Função para registrar os comandos CLI
 void registerCLICommands(void) {
-    FreeRTOS_CLIRegisterCommand(&helloCommandDefinition);
-    FreeRTOS_CLIRegisterCommand(&exitCommandDefinition);
-    FreeRTOS_CLIRegisterCommand(&setCommandDefinition);
     FreeRTOS_CLIRegisterCommand(&ajudaCommandDefinition);
+    FreeRTOS_CLIRegisterCommand(&ligarPwmParDefinition);
+    FreeRTOS_CLIRegisterCommand(&ligaPwmImparDefinition);
+    FreeRTOS_CLIRegisterCommand(&desligaPwmImparDefinition);
+    FreeRTOS_CLIRegisterCommand(&setTempoInjecaoDefinition);
 }
 
 
@@ -161,54 +162,95 @@ static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const 
 }
 
 static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
-    // const char *message = 
-    // "+------------------------------------------------+\r\n"
-    // "|          Lista de Comandos do Sistema           |\r\n"
-    // "+------------------------------------------------+\r\n"
-    // "|  hello:   | Exibe uma mensagem de saudação.     |\r\n"
-    // "|  exit:    | Sai do terminal CLI.                |\r\n"
-    // "|  set:     | Exemplo de comando que aceita       |\r\n"
-    // "|           | dois argumentos: set <param1> <param2> |\r\n"
-    // "|  ajuda:   | Lista todos os comandos disponíveis.|\r\n"
-    // "+------------------------------------------------+\r\n";
-    // const char *message = 
-    // "=== Lista de Comandos do Sistema ===\r\n"
-    // "hello        : Exibe uma mensagem de saudacao.\r\n"
-    // "exit         : Sai do terminal CLI.\r\n"
-    // "set <p1> <p2>: Exemplo de comando que aceita dois argumentos.\r\n"
-    // "ajuda        : Lista todos os comandos disponíveis.\r\n"
-    // "===================================\r\n";
-
     const char *message = 
-    "==================================================\r\n"
-    "|              Lista de Comandos do Sistema       |\r\n"
-    "==================================================\r\n"
-    "| Comando                     | Descrição        |\r\n"
-    "--------------------------------------------------\r\n"
-    "| hello                       | Exibe uma        |\r\n"
-    "|                              | mensagem de      |\r\n"
-    "|                              | saudação.        |\r\n"
-    "--------------------------------------------------\r\n"
-    "| exit                        | Sai do terminal  |\r\n"
-    "|                              | CLI.             |\r\n"
-    "--------------------------------------------------\r\n"
-    "| set <param1> <param2>        | Exemplo de       |\r\n"
-    "|                              | comando que      |\r\n"
-    "|                              | aceita dois      |\r\n"
-    "|                              | argumentos.      |\r\n"
-    "--------------------------------------------------\r\n"
-    "| ajuda                       | Lista todos os   |\r\n"
-    "|                              | comandos         |\r\n"
-    "|                              | disponíveis.     |\r\n"
-    "==================================================\r\n";
+    "+-------------------------------------------------------------------------+\r\n"
+    "| Lista de Comandos do Sistema                                            |\r\n"
+    "+-------------------------------------------------------------------------+\r\n"
+    "| ajuda:             | Lista todos os comandos disponíveis.               |\r\n"
+    "| ligar_pwm_par:     | liga os pwms do injetor e led par.                 |\r\n"
+    "| desligar_pwm_par:  | desliga os pwms do injetor e led par.              |\r\n"
+    "| ligar_pwm_impar:   | liga os pwms do injetor e led impar.               |\r\n"
+    "| desligar_pwm_impar:| Lista todos os comandos disponíveis.               |\r\n"
+    "+-------------------------------------------------------------------------+\r\n";
 
     snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
     
-
-
     return pdFALSE;
 }
 
+
+static BaseType_t ligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString){
+    const char *message = "Ligando PWM do LED e do Injetor PAR\r\n";
+    snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
+
+    mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_START_NO_STOP);
+    mcpwm_timer_start_stop(timer_injetor_par, MCPWM_TIMER_START_NO_STOP);
+
+    return pdFALSE;
+
+}
+
+static BaseType_t desligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
+    const char *message = "Desligando PWM do Led e do Injetor PAR\r\n";
+    snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
+
+    mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_STOP_FULL);
+    mcpwm_timer_start_stop(timer_injetor_par, MCPWM_TIMER_STOP_FULL);
+
+    return pdFALSE;
+
+}
+
+static BaseType_t ligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString){
+    const char *message = "Ligando PWM do LED e do Injetor Impar\r\n";
+    snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
+
+    mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_START_NO_STOP);
+    mcpwm_timer_start_stop(timer_injetor_impar, MCPWM_TIMER_START_NO_STOP);
+
+    return pdFALSE;
+
+}
+
+static BaseType_t desligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
+    const char *message = "Desligando PWM do Led e do Injetor Impar\r\n";
+    snprintf(pcWriteBuffer, xWriteBufferLen, "%s", message);
+
+    mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_STOP_FULL);
+    mcpwm_timer_start_stop(timer_injetor_impar, MCPWM_TIMER_STOP_FULL);
+
+    return pdFALSE;
+
+}
+
+static BaseType_t setTempoInjecaoCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString) {
+    uint32_t tempoInjecaoUs;
+    const char *param1;
+    BaseType_t xParamLen1, xParamLen2, xResult;
+
+
+    // // Extraindo o primeiro argumento (param1)
+    param1 = FreeRTOS_CLIGetParameter(pcCommandString, 1, &xParamLen1);
+    // Extraindo o segundo argumento (param2)
+    tempoInjecaoUs = FreeRTOS_CLIGetParameter(pcCommandString, 2, &xParamLen2);
+
+
+    if (param1 == NULL || tempoInjecaoUs == NULL) {
+        snprintf(pcWriteBuffer, xWriteBufferLen, "Erro: parâmetros inválidos.\r\n");
+    } else {
+        // Aqui você pode adicionar a lógica para lidar com os argumentos
+        uint32_t numero1 = (uint32_t)atoi(tempoInjecaoUs);
+        
+        snprintf(pcWriteBuffer, xWriteBufferLen, "Tempo de injecao recebido: %ld\r\n", numero1);
+
+        mcpwm_comparator_set_compare_value(comparador_injetor_par, numero1);
+        mcpwm_comparator_set_compare_value(comparador_injetor_impar, numero1);
+    }
+
+
+    
+    return pdFALSE;
+}
 
 
 #endif

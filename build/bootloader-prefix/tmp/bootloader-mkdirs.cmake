@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1/components/bootloader/subproject"
-  "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader"
-  "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix"
-  "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix/tmp"
-  "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix/src"
-  "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Espressif/frameworks/esp-idf-v5.2.1/components/bootloader/subproject"
+  "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader"
+  "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix"
+  "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix/tmp"
+  "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix/src"
+  "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

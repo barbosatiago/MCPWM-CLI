@@ -1,1 +1,0 @@
-warning: the value 'y' is invalid for SOC_PCNT_GROUPS (defined at E:/Espressif/Espressif/frameworks/esp-idf-v5.2.1\./components/soc/esp32s3/include/soc/Kconfig.soc_caps.in:626), which has type int -- assignment ignored

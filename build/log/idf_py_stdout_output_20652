@@ -1,0 +1,82 @@
+[1/11] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\Client\Desktop\MCPWM\sample_project\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5250 bytes. 0x2db0 bytes (36%) free.
+[2/9] Building C object esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:17:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:94:1: warning: missing initializer for field 'cExpectedNumberOfParameters' of 'CLI_Command_Definition_t' {aka 'const struct xCOMMAND_LINE_INPUT'} [-Wmissing-field-initializers]
+   94 | };
+      | ^
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:25:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/include/FreeRTOS_CLI.h:52:16: note: 'cExpectedNumberOfParameters' declared here
+   52 |         int8_t cExpectedNumberOfParameters;                     /* Commands expect a fixed number of parameters, which may be zero. */
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c: In function 'setCommand':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:139:40: warning: unused variable 'xResult' [-Wunused-variable]
+  139 |     BaseType_t xParamLen1, xParamLen2, xResult;
+      |                                        ^~~~~~~
+[3/9] Linking C static library esp-idf\multscan_shell\libmultscan_shell.a
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:22:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:94:1: warning: missing initializer for field 'cExpectedNumberOfParameters' of 'CLI_Command_Definition_t' {aka 'const struct xCOMMAND_LINE_INPUT'} [-Wmissing-field-initializers]
+   94 | };
+      | ^
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:25:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/include/FreeRTOS_CLI.h:52:16: note: 'cExpectedNumberOfParameters' declared here
+   52 |         int8_t cExpectedNumberOfParameters;                     /* Commands expect a fixed number of parameters, which may be zero. */
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'init_mcpwm_par':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:219:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  219 |         .on_reach = callback_mcpwm_par,
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:219:21: note: (near initialization for 'compare_callback_par.on_reach')
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'init_mcpwm_impar':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:319:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  319 |         .on_reach = callback_mcpwm_impar_leds,
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:319:21: note: (near initialization for 'compare_callback_impar.on_reach')
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'callback_mcpwm_teste':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:371:13: warning: unused variable 'controle_impar' [-Wunused-variable]
+  371 |     uint8_t controle_impar[BUFFER_CIRCULAR_SIZE] = {1, 0, 1, 0};
+      |             ^~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:369:13: warning: unused variable 'controle_par' [-Wunused-variable]
+  369 |     uint8_t controle_par[BUFFER_CIRCULAR_SIZE] = {0, 1, 0, 1};
+      |             ^~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:367:14: warning: unused variable 'CMD' [-Wunused-variable]
+  367 |     uint32_t CMD; // CMD dos tasks notify
+      |              ^~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h: At top level:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:47:19: warning: 'helloCommand' used but never defined
+   47 | static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:48:19: warning: 'exitCommand' used but never defined
+   48 | static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:49:19: warning: 'setCommand' used but never defined
+   49 | static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:50:19: warning: 'helpCommand' used but never defined
+   50 | static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:52:19: warning: 'ligarPwmParCommand' used but never defined
+   52 | static BaseType_t ligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:53:19: warning: 'desligarPwmParCommand' used but never defined
+   53 | static BaseType_t desligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:54:19: warning: 'ligarPwmImparCommand' used but never defined
+   54 | static BaseType_t ligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:55:19: warning: 'desligarPwmImparCommand' used but never defined
+   55 | static BaseType_t desligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf\main\libmain.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable main.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32s3 image...
+Merged 2 ELF sections
+Successfully created esp32s3 image.
+Generated C:/Users/Client/Desktop/MCPWM/sample_project/build/main.bin
+[9/9] cmd.exe /C "cd /D C:\Users\Client\Desktop\MCPWM\sample_project\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Client/Desktop/MCPWM/sample_project/build/partition_table/partition-table.bin C:/Users/Client/Desktop/MCPWM/sample_project/build/main.bin"
+main.bin binary size 0x42d90 bytes. Smallest app partition is 0x100000 bytes. 0xbd270 bytes (74%) free.

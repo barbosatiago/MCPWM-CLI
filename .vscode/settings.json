@@ -10,6 +10,9 @@
     "freertos_cli.h": "c",
     "stdlib.h": "c",
     "task.h": "c",
-    "esp_err.h": "c"
+    "esp_err.h": "c",
+    "ledc.h": "c",
+    "mcpwmmultstruct.h": "c",
+    "cstdint": "c"
   }
 }

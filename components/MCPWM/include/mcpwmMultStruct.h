@@ -30,6 +30,26 @@
 
 #define MCPWM_TIMER_FREQUENCIA      1000000     //  1MHz, 1 tick = 1uS.
 
+extern mcpwm_cmpr_handle_t comparador_injetor_par;
+extern mcpwm_cmpr_handle_t comparador_led_par;
+extern mcpwm_timer_handle_t timer_injetor_par;
+extern mcpwm_timer_handle_t timer_led_par;
+extern mcpwm_sync_handle_t sync_handle_par;
+extern mcpwm_oper_handle_t operador_injetor_par;
+extern mcpwm_oper_handle_t operador_led_par;
+extern mcpwm_gen_handle_t gerador_injetor_par;
+extern mcpwm_gen_handle_t gerador_led_par;
+
+extern mcpwm_cmpr_handle_t comparador_injetor_impar;
+extern mcpwm_cmpr_handle_t comparador_led_impar;
+extern mcpwm_timer_handle_t timer_injetor_impar;
+extern mcpwm_timer_handle_t timer_led_impar;
+extern mcpwm_sync_handle_t sync_handle_impar;
+extern mcpwm_oper_handle_t operador_injetor_impar;
+extern mcpwm_oper_handle_t operador_led_impar;
+extern mcpwm_gen_handle_t gerador_injetor_impar;
+extern mcpwm_gen_handle_t gerador_led_impar;
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -232,6 +252,9 @@ struct mcpwm_cap_channel_t {
         uint32_t reset_io_at_exit: 1; // Whether to reset the GPIO configuration when capture channel is deleted
     } flags;
 };
+
+extern mcpwm_dev_t MCPWM0;
+extern mcpwm_dev_t MCPWM1;
 
 mcpwm_group_t *mcpwm_acquire_group_handle(int group_id);
 void mcpwm_release_group_handle(mcpwm_group_t *group);

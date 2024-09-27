@@ -1,0 +1,118 @@
+[1/11] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Users\Client\Desktop\MCPWM\sample_project\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.2_py3.11_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.2.1/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/Client/Desktop/MCPWM/sample_project/build/bootloader/bootloader.bin"
+Bootloader binary size 0x5250 bytes. 0x2db0 bytes (36%) free.
+[2/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:22:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:94:1: warning: missing initializer for field 'cExpectedNumberOfParameters' of 'CLI_Command_Definition_t' {aka 'const struct xCOMMAND_LINE_INPUT'} [-Wmissing-field-initializers]
+   94 | };
+      | ^
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:25:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/include/FreeRTOS_CLI.h:52:16: note: 'cExpectedNumberOfParameters' declared here
+   52 |         int8_t cExpectedNumberOfParameters;                     /* Commands expect a fixed number of parameters, which may be zero. */
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'init_mcpwm_par':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:219:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  219 |         .on_reach = callback_mcpwm_par,
+      |                     ^~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:219:21: note: (near initialization for 'compare_callback_par.on_reach')
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'init_mcpwm_impar':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:319:21: warning: initialization of '_Bool (*)(struct mcpwm_cmpr_t *, const mcpwm_compare_event_data_t *, void *)' from incompatible pointer type '_Bool (*)(struct mcpwm_cmpr_t *, void *)' [-Wincompatible-pointer-types]
+  319 |         .on_reach = callback_mcpwm_impar_leds,
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:319:21: note: (near initialization for 'compare_callback_impar.on_reach')
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c: In function 'callback_mcpwm_teste':
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:371:13: warning: unused variable 'controle_impar' [-Wunused-variable]
+  371 |     uint8_t controle_impar[BUFFER_CIRCULAR_SIZE] = {1, 0, 1, 0};
+      |             ^~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:369:13: warning: unused variable 'controle_par' [-Wunused-variable]
+  369 |     uint8_t controle_par[BUFFER_CIRCULAR_SIZE] = {0, 1, 0, 1};
+      |             ^~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/main/main.c:367:14: warning: unused variable 'CMD' [-Wunused-variable]
+  367 |     uint32_t CMD; // CMD dos tasks notify
+      |              ^~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h: At top level:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:47:19: warning: 'helloCommand' used but never defined
+   47 | static BaseType_t helloCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:48:19: warning: 'exitCommand' used but never defined
+   48 | static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:49:19: warning: 'setCommand' used but never defined
+   49 | static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:50:19: warning: 'helpCommand' used but never defined
+   50 | static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:52:19: warning: 'ligarPwmParCommand' used but never defined
+   52 | static BaseType_t ligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:53:19: warning: 'desligarPwmParCommand' used but never defined
+   53 | static BaseType_t desligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:54:19: warning: 'ligarPwmImparCommand' used but never defined
+   54 | static BaseType_t ligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:55:19: warning: 'desligarPwmImparCommand' used but never defined
+   55 | static BaseType_t desligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~
+[3/9] Building C object esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj
+FAILED: esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj 
+ccache C:\Espressif\tools\xtensa-esp-elf\esp-13.2.0_20230928\xtensa-esp-elf\bin\xtensa-esp32s3-elf-gcc.exe -DESP_PLATFORM -DIDF_VER=\"v5.2.1-dirty\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -IC:/Users/Client/Desktop/MCPWM/sample_project/build/config -IC:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/newlib/platform_include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/config/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/freertos/esp_additions/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include/soc -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/include/soc/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_hw_support/port/esp32s3/. -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/heap/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/log/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/soc/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/soc/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/soc/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/hal/platform_port/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/hal/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/hal/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/include/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_rom/esp32s3 -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_common/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/port/soc -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_system/port/include/private -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/xtensa/deprecated_include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include/apps -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/include/apps/sntp -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/lwip/src/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/freertos/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include/arch -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/lwip/port/esp32xx/include/sys -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/deprecated -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/analog_comparator/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/dac/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/gpio/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/gptimer/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/i2c/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/i2s/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/ledc/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/mcpwm/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/parlio/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/pcnt/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/rmt/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/sdio_slave/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/sdmmc/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/sigma_delta/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/spi/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/temperature_sensor/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/touch_sensor/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/twai/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/uart/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/usb_serial_jtag/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/driver/touch_sensor/esp32s3/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_pm/include -IC:/Espressif/frameworks/esp-idf-v5.2.1/components/esp_ringbuf/include -IC:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/include -IC:/Users/Client/Desktop/MCPWM/sample_project/components/MCPWM/include -mlongcalls  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=C:/Users/Client/Desktop/MCPWM/sample_project=. -fmacro-prefix-map=C:/Espressif/frameworks/esp-idf-v5.2.1=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj -MF esp-idf\multscan_shell\CMakeFiles\__idf_multscan_shell.dir\multscan_shell.c.obj.d -o esp-idf/multscan_shell/CMakeFiles/__idf_multscan_shell.dir/multscan_shell.c.obj -c C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:17:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:94:1: warning: missing initializer for field 'cExpectedNumberOfParameters' of 'CLI_Command_Definition_t' {aka 'const struct xCOMMAND_LINE_INPUT'} [-Wmissing-field-initializers]
+   94 | };
+      | ^
+In file included from C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/include/multscan_shell.h:25:
+C:/Users/Client/Desktop/MCPWM/sample_project/components/CLI/include/FreeRTOS_CLI.h:52:16: note: 'cExpectedNumberOfParameters' declared here
+   52 |         int8_t cExpectedNumberOfParameters;                     /* Commands expect a fixed number of parameters, which may be zero. */
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c: In function 'setCommand':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:139:40: warning: unused variable 'xResult' [-Wunused-variable]
+  139 |     BaseType_t xParamLen1, xParamLen2, xResult;
+      |                                        ^~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c: In function 'ligarPwmParCommand':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:185:5: error: implicit declaration of function 'mcpwm_timer_start_stop' [-Werror=implicit-function-declaration]
+  185 |     mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_START_NO_STOP);
+      |     ^~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:185:28: error: 'timer_led_par' undeclared (first use in this function)
+  185 |     mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_START_NO_STOP);
+      |                            ^~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:185:28: note: each undeclared identifier is reported only once for each function it appears in
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:185:43: error: 'MCPWM_TIMER_START_NO_STOP' undeclared (first use in this function)
+  185 |     mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_START_NO_STOP);
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:186:28: error: 'timer_injetor_par' undeclared (first use in this function)
+  186 |     mcpwm_timer_start_stop(timer_injetor_par, MCPWM_TIMER_START_NO_STOP);
+      |                            ^~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c: In function 'desligarPwmParCommand':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:196:28: error: 'timer_led_par' undeclared (first use in this function)
+  196 |     mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_STOP_FULL);
+      |                            ^~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:196:43: error: 'MCPWM_TIMER_STOP_FULL' undeclared (first use in this function)
+  196 |     mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_STOP_FULL);
+      |                                           ^~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:197:28: error: 'timer_injetor_par' undeclared (first use in this function)
+  197 |     mcpwm_timer_start_stop(timer_injetor_par, MCPWM_TIMER_STOP_FULL);
+      |                            ^~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c: In function 'ligarPwmImparCommand':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:207:28: error: 'timer_led_impar' undeclared (first use in this function)
+  207 |     mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_START_NO_STOP);
+      |                            ^~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:207:45: error: 'MCPWM_TIMER_START_NO_STOP' undeclared (first use in this function)
+  207 |     mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_START_NO_STOP);
+      |                                             ^~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:208:28: error: 'timer_injetor_impar' undeclared (first use in this function)
+  208 |     mcpwm_timer_start_stop(timer_injetor_impar, MCPWM_TIMER_START_NO_STOP);
+      |                            ^~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c: In function 'desligarPwmImparCommand':
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:218:28: error: 'timer_led_impar' undeclared (first use in this function)
+  218 |     mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_STOP_FULL);
+      |                            ^~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:218:45: error: 'MCPWM_TIMER_STOP_FULL' undeclared (first use in this function)
+  218 |     mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_STOP_FULL);
+      |                                             ^~~~~~~~~~~~~~~~~~~~~
+C:/Users/Client/Desktop/MCPWM/sample_project/components/multscan_shell/multscan_shell.c:219:28: error: 'timer_injetor_impar' undeclared (first use in this function)
+  219 |     mcpwm_timer_start_stop(timer_injetor_impar, MCPWM_TIMER_STOP_FULL);
+      |                            ^~~~~~~~~~~~~~~~~~~
+cc1.exe: some warnings being treated as errors
+ninja: build stopped: subcommand failed.

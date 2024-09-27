@@ -24,13 +24,13 @@
 #include "freertos/event_groups.h"
 #include "FreeRTOS_CLI.h"
 
-
-
 #include "esp_err.h"
 #include "esp_log.h"
 
 #include "driver/uart.h"
 #include "driver/gpio.h"
+
+#include "mcpwmMultStruct.h"
 
 
 #define TXD_PIN                        (GPIO_NUM_43)
@@ -49,6 +49,12 @@ static BaseType_t exitCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const
 static BaseType_t setCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 static BaseType_t helpCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
 
+static BaseType_t ligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t desligarPwmParCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t ligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t desligarPwmImparCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+static BaseType_t setTempoInjecaoCommand(char *pcWriteBuffer, size_t xWriteBufferLen, const char *pcCommandString);
+
 // Função para registrar os comandos CLI
 void registerCLICommands(void);
 void cli_task(void *pvParameters);
@@ -56,7 +62,7 @@ void cli_task(void *pvParameters);
 
 static const CLI_Command_Definition_t helloCommandDefinition = {
     "hello",  // Nome do comando
-    "hello: Exibe uma mensagem de saudação.\r\n",  // Descrição do comando
+    "hello: Exibe uma mensagem de saudacao.\r\n",  // Descrição do comando
     helloCommand,  // Função de callback
     0  // Número de argumentos esperados (0 no caso deste comando)
 };
@@ -70,7 +76,7 @@ static const CLI_Command_Definition_t exitCommandDefinition = {
 };
 
 static const CLI_Command_Definition_t setCommandDefinition = {
-    "set",
+    "set_ta",
     "set <param1> <param2>: Exemplo de comando que aceita dois argumentos\r\n",
     setCommand,
     2
@@ -81,6 +87,42 @@ static const CLI_Command_Definition_t ajudaCommandDefinition = {
     "ajuda: Lista todos os comandos disponiveis\r\n",
     helpCommand,
     0
+};
+
+static const CLI_Command_Definition_t ligarPwmParDefinition = {
+    "ligar pwm par",
+    "ligar pwm par: liga os pwms do injetor e led par",
+    ligarPwmParCommand,
+    2
+};
+
+
+static const CLI_Command_Definition_t desligarPwmParDefinition = {
+    "desligar pwm par",
+    "desligar pwm par: desliga os pwms do injetor e led par",
+    desligarPwmParCommand,
+    2
+};
+
+static const CLI_Command_Definition_t ligaPwmImparDefinition = {
+    "ligar pwm impar",
+    "ligar pwm impar: liga os pwms do injetor e led impar",
+    ligarPwmImparCommand,
+    2
+};
+
+static const CLI_Command_Definition_t desligaPwmImparDefinition = {
+    "desligar pwm impar",
+    "desligar pwm impar: desliga os pwms do injetor e led impar",
+    desligarPwmImparCommand,
+    2
+};
+
+static const CLI_Command_Definition_t setTempoInjecaoDefinition = {
+    "set injecao",
+    "set injecao <param>: Atualiza tempo de injecao",
+    setTempoInjecaoCommand,
+    2
 };
 
 

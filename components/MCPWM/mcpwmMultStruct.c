@@ -15,6 +15,26 @@
 
 #include "mcpwmMultStruct.h"
 
+mcpwm_cmpr_handle_t comparador_injetor_par = NULL;
+mcpwm_cmpr_handle_t comparador_led_par = NULL;
+mcpwm_timer_handle_t timer_injetor_par = NULL;
+mcpwm_timer_handle_t timer_led_par = NULL;
+mcpwm_sync_handle_t sync_handle_par = NULL;
+mcpwm_oper_handle_t operador_injetor_par = NULL;
+mcpwm_oper_handle_t operador_led_par = NULL;
+mcpwm_gen_handle_t gerador_injetor_par = NULL;
+mcpwm_gen_handle_t gerador_led_par = NULL;
+
+mcpwm_cmpr_handle_t comparador_injetor_impar = NULL;
+mcpwm_cmpr_handle_t comparador_led_impar = NULL;
+mcpwm_timer_handle_t timer_injetor_impar = NULL;
+mcpwm_timer_handle_t timer_led_impar = NULL;
+mcpwm_sync_handle_t sync_handle_impar = NULL;
+mcpwm_oper_handle_t operador_injetor_impar = NULL;
+mcpwm_oper_handle_t operador_led_impar = NULL;
+mcpwm_gen_handle_t gerador_injetor_impar = NULL;
+mcpwm_gen_handle_t gerador_led_impar = NULL;
+
 /******************************************************************************
  * @brief Cria um identificador de sincronização para um timer PWM em um módulo MCPWM.
  *

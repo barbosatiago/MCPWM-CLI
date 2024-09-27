@@ -18,8 +18,10 @@
 #include "freertos/timers.h"
 #include "freertos/event_groups.h"
 #include "mcpwmMultStruct.h"
-
+#include "soc/mcpwm_struct.h"
 #include "multscan_shell.h"
+
+
 
 /**
  * @brief Estrutura utilizada como parametro de saída nas funções para status.
@@ -53,6 +55,7 @@ bool callback_mcpwm_par(mcpwm_cmpr_handle_t cmpr, void *user_data);
 bool callback_mcpwm_teste(mcpwm_cmpr_handle_t cmpr, void *user_data);
 void xControlaInjetores(void * arg);
 void xControlaADCs(void * arg);
+int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32_t max_out);
 
 TaskHandle_t xControlaInjetoresHandle = NULL;
 EventGroupHandle_t evtControlaInjetores   = NULL;
@@ -60,6 +63,14 @@ EventGroupHandle_t evtControlaInjetores   = NULL;
 #define TEMPO_ACIONAMENTO_STROBO 650
 #define CONVERTE_PARA_MICROSEGUNDOS 1000
 #define FATOR_DIVISOR_MCMPWM 1 // Fator de divisão para quando a frequência do MCPWM altera
+#define FREQUENCIA 20
+#define TEMPO_DE_INJECAO 1500
+#define TOLERANCIA_PID_BOMBA 0.01
+#define FREQUENCIA_LIGAR_LED 90
+#define LIMITE_MINIMO_PORCENTAGEM_LED 0
+#define LIMITE_MAXIMO_PORCENTAGEM_LED 100
+#define LIMITE_MIN_TEMPO_INJECAO      0
+
 
 #define PIN_OUTPUT_RESPIRO_TANQUE      (GPIO_NUM_0)
 #define PIN_ADC_CORRENTE_INJETOR       (GPIO_NUM_1)
@@ -92,119 +103,55 @@ EventGroupHandle_t evtControlaInjetores   = NULL;
 #define CHANNEL_ADC_TENSAO_FONTE        ADC_CHANNEL_2
 #define CHANNEL_ADC_TECLADO             ADC_CHANNEL_3
 
-mcpwm_cmpr_handle_t comparador_injetor_par = NULL;
-mcpwm_cmpr_handle_t comparador_led_par = NULL;
-mcpwm_timer_handle_t timer_injetor_par = NULL;
-mcpwm_timer_handle_t timer_led_par = NULL;
-mcpwm_sync_handle_t sync_handle_par = NULL;
-mcpwm_oper_handle_t operador_injetor_par = NULL;
-mcpwm_oper_handle_t operador_led_par = NULL;
-mcpwm_gen_handle_t gerador_injetor_par = NULL;
-mcpwm_gen_handle_t gerador_led_par = NULL;
 
-mcpwm_cmpr_handle_t comparador_injetor_impar = NULL;
-mcpwm_cmpr_handle_t comparador_led_impar = NULL;
-mcpwm_timer_handle_t timer_injetor_impar = NULL;
-mcpwm_timer_handle_t timer_led_impar = NULL;
-mcpwm_sync_handle_t sync_handle_impar = NULL;
-mcpwm_oper_handle_t operador_injetor_impar = NULL;
-mcpwm_oper_handle_t operador_led_impar = NULL;
-mcpwm_gen_handle_t gerador_injetor_impar = NULL;
-mcpwm_gen_handle_t gerador_led_impar = NULL;
 
 adc_oneshot_unit_handle_t adc_handle_teclado = NULL;
 adc_oneshot_unit_handle_t adc_handle_tensao_fonte = NULL;
 adc_oneshot_unit_handle_t adc_handle_corrente_bomba = NULL;
 adc_oneshot_unit_handle_t adc_handle_corrente_injetor = NULL;
-
 adc_oneshot_unit_handle_t adc_1_handle = NULL;
 adc_oneshot_unit_handle_t adc_2_handle = NULL;
-
-
 adc_cali_handle_t adc2_calibracao_handle = NULL;
 adc_cali_handle_t adc1_calibracao_handle = NULL;
-
 adc_continuous_handle_t adc_dma_handle = NULL;
 
 
 
 void xPWMProtecao(void * arg);
+void initPins(void);
 
 
 void app_main(void) {
 
     evtControlaInjetores = xEventGroupCreate();
 
-    esp_rom_gpio_pad_select_gpio(PIN_OUTPUT_RESPIRO_TANQUE);
-    esp_rom_gpio_pad_select_gpio(PIN_ADC_CORRENTE_INJETOR);
-    esp_rom_gpio_pad_select_gpio(PIN_ADC_CORRENTE_BOMBA);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_LED_PAR);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_LED_IMPAR);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_INJ_IMPAR);
-    esp_rom_gpio_pad_select_gpio(PIN_ADC_TENSAO_FONTE);
-    esp_rom_gpio_pad_select_gpio(PIN_ADC_TECLADO);
-    esp_rom_gpio_pad_select_gpio(PIN_OUTPUT_CONTROLE_IMPAR);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_VALVULA);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_ULTRASSOM);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_BOMBA);
-    esp_rom_gpio_pad_select_gpio(PIN_BUZZER);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_INJ_PAR);
-    esp_rom_gpio_pad_select_gpio(PIN_PWM_PROTECAO);
-    esp_rom_gpio_pad_select_gpio(PIN_OUTPUT_CONTROLE_PAR);
-
-    gpio_set_direction(PIN_OUTPUT_RESPIRO_TANQUE, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_ADC_CORRENTE_INJETOR, GPIO_MODE_INPUT);
-    gpio_set_direction(PIN_ADC_CORRENTE_BOMBA, GPIO_MODE_INPUT);
-    gpio_set_direction(PIN_PWM_LED_PAR, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_LED_IMPAR, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_INJ_IMPAR, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_ADC_TENSAO_FONTE, GPIO_MODE_INPUT);
-    gpio_set_direction(PIN_ADC_TECLADO, GPIO_MODE_INPUT);
-    gpio_set_direction(PIN_OUTPUT_CONTROLE_IMPAR, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_VALVULA, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_ULTRASSOM, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_BOMBA, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_BUZZER, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_INJ_PAR, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_PWM_PROTECAO, GPIO_MODE_OUTPUT);
-    gpio_set_direction(PIN_OUTPUT_CONTROLE_PAR, GPIO_MODE_OUTPUT);
-
-    gpio_set_level(PIN_OUTPUT_RESPIRO_TANQUE, false);
-    gpio_set_level(PIN_ADC_CORRENTE_INJETOR, false);
-    gpio_set_level(PIN_ADC_CORRENTE_BOMBA, false);
-    gpio_set_level(PIN_PWM_LED_PAR, false);
-    gpio_set_level(PIN_PWM_LED_IMPAR, false);
-    gpio_set_level(PIN_PWM_INJ_IMPAR, false);
-    gpio_set_level(PIN_ADC_TENSAO_FONTE, false);
-    gpio_set_level(PIN_ADC_TECLADO, false);
-    gpio_set_level(PIN_OUTPUT_CONTROLE_IMPAR, false);
-    gpio_set_level(PIN_PWM_VALVULA, false);
-    gpio_set_level(PIN_PWM_ULTRASSOM, false);
-    gpio_set_level(PIN_PWM_BOMBA, false);
-    gpio_set_level(PIN_BUZZER, false);
-    gpio_set_level(PIN_PWM_INJ_PAR, false);
-    gpio_set_level(PIN_PWM_PROTECAO, false);
-    gpio_set_level(PIN_OUTPUT_CONTROLE_PAR, false);
-
+    initPins();
     multscan_inicializa_shell();
-
-    if (multscan_inicializa_shell() != 0) {
-        multscan_envia_msg("\nshell inicializado com sucesso\n");
-    }
-
     init_mcpwm_impar();
     init_mcpwm_par();
 
     vTaskDelay(pdMS_TO_TICKS(100));
-
-    mcpwm_timer_start_stop(timer_led_impar, MCPWM_TIMER_START_NO_STOP);
-    mcpwm_timer_start_stop(timer_injetor_impar, MCPWM_TIMER_START_NO_STOP);
-    mcpwm_timer_start_stop(timer_led_par, MCPWM_TIMER_START_NO_STOP);
-    mcpwm_timer_start_stop(timer_injetor_par, MCPWM_TIMER_START_NO_STOP);
+    
 
 
+    // MCPWM0.timer[0].timer_sync.timer_phase = 0;
+    // MCPWM1.timer[0].timer_sync.timer_phase = ((MCPWM_TIMER_FREQUENCIA / FREQUENCIA) / 2);
+
+    // MCPWM0.timer[0].timer_sync.timer_sync_sw = !MCPWM0.timer[0].timer_sync.timer_sync_sw;
+    // MCPWM1.timer[0].timer_sync.timer_sync_sw = !MCPWM1.timer[0].timer_sync.timer_sync_sw;
+
+    // MCPWM0.timer[1].timer_sync.timer_phase = 0;
+    // MCPWM1.timer[1].timer_sync.timer_phase = ((MCPWM_TIMER_FREQUENCIA / FREQUENCIA) / 2);
+    // MCPWM0.timer[1].timer_sync.timer_sync_sw = !MCPWM0.timer[1].timer_sync.timer_sync_sw;
+    // MCPWM1.timer[1].timer_sync.timer_sync_sw = !MCPWM1.timer[1].timer_sync.timer_sync_sw;
+
+    // uint32_t porcentagem = 50;
+    // uint32_t tempoInjecaoAtual = TEMPO_DE_INJECAO - TEMPO_ACIONAMENTO_STROBO;
+    // uint32_t valorSincronismo = lv_map(porcentagem, LIMITE_MINIMO_PORCENTAGEM_LED, LIMITE_MAXIMO_PORCENTAGEM_LED, LIMITE_MIN_TEMPO_INJECAO, tempoInjecaoAtual);
+
+    // sincronizarTimers(sync_handle_par, timer_injetor_par, valorSincronismo);
+    // sincronizarTimers(sync_handle_impar, timer_injetor_impar, valorSincronismo);
 }
-
 
 /******************************************************************************
  * @brief Responsável por inicilizar o MCPWM da aplicação
@@ -213,8 +160,8 @@ void app_main(void) {
  *****************************************************************************/
 CommSts init_mcpwm_par(void) {
     CommSts Status = COMMSTS_CERTO;
-    uint8_t  frequencia = 20;
-    uint16_t tempoInjecaoUs = 1500;  // Tempo de injeção inicial (1000 = 1ms).
+    uint8_t  frequencia = FREQUENCIA;
+    uint16_t tempoInjecaoUs = TEMPO_DE_INJECAO;  // Tempo de injeção inicial (1000 = 1ms).
     uint16_t tempoLedStroboUs = TEMPO_ACIONAMENTO_STROBO / FATOR_DIVISOR_MCMPWM; // Tempo em que o led fica aceso (5 = 5us).
 
     mcpwm_timer_config_t timer_config = {
@@ -294,8 +241,8 @@ CommSts init_mcpwm_par(void) {
  *****************************************************************************/
 CommSts init_mcpwm_impar(void) {
     CommSts Status = COMMSTS_CERTO;
-    uint8_t  frequencia = 20;
-    uint16_t tempoInjecaoUs = 1500;  // Tempo de injeção inicial (1000 = 1ms).
+    uint8_t  frequencia = FREQUENCIA;
+    uint16_t tempoInjecaoUs = TEMPO_DE_INJECAO;  // Tempo de injeção inicial (1000 = 1ms).
     uint16_t tempoLedStroboUs = TEMPO_ACIONAMENTO_STROBO / FATOR_DIVISOR_MCMPWM; // Tempo em que o led fica aceso (5 = 5us).
 
     mcpwm_timer_config_t timer_config2 = {
@@ -432,4 +379,80 @@ bool callback_mcpwm_teste(mcpwm_cmpr_handle_t cmpr, void *user_data) {
     index = (index + 1) % BUFFER_CIRCULAR_SIZE;
 
     return true;
+}
+
+void initPins (void) {
+
+    esp_rom_gpio_pad_select_gpio(PIN_OUTPUT_RESPIRO_TANQUE);
+    esp_rom_gpio_pad_select_gpio(PIN_ADC_CORRENTE_INJETOR);
+    esp_rom_gpio_pad_select_gpio(PIN_ADC_CORRENTE_BOMBA);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_LED_PAR);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_LED_IMPAR);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_INJ_IMPAR);
+    esp_rom_gpio_pad_select_gpio(PIN_ADC_TENSAO_FONTE);
+    esp_rom_gpio_pad_select_gpio(PIN_ADC_TECLADO);
+    esp_rom_gpio_pad_select_gpio(PIN_OUTPUT_CONTROLE_IMPAR);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_VALVULA);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_ULTRASSOM);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_BOMBA);
+    esp_rom_gpio_pad_select_gpio(PIN_BUZZER);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_INJ_PAR);
+    esp_rom_gpio_pad_select_gpio(PIN_PWM_PROTECAO);
+    esp_rom_gpio_pad_select_gpio(PIN_OUTPUT_CONTROLE_PAR);
+
+    gpio_set_direction(PIN_OUTPUT_RESPIRO_TANQUE, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_ADC_CORRENTE_INJETOR, GPIO_MODE_INPUT);
+    gpio_set_direction(PIN_ADC_CORRENTE_BOMBA, GPIO_MODE_INPUT);
+    gpio_set_direction(PIN_PWM_LED_PAR, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_LED_IMPAR, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_INJ_IMPAR, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_ADC_TENSAO_FONTE, GPIO_MODE_INPUT);
+    gpio_set_direction(PIN_ADC_TECLADO, GPIO_MODE_INPUT);
+    gpio_set_direction(PIN_OUTPUT_CONTROLE_IMPAR, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_VALVULA, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_ULTRASSOM, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_BOMBA, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_BUZZER, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_INJ_PAR, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_PWM_PROTECAO, GPIO_MODE_OUTPUT);
+    gpio_set_direction(PIN_OUTPUT_CONTROLE_PAR, GPIO_MODE_OUTPUT);
+
+    gpio_set_level(PIN_OUTPUT_RESPIRO_TANQUE, false);
+    gpio_set_level(PIN_ADC_CORRENTE_INJETOR, false);
+    gpio_set_level(PIN_ADC_CORRENTE_BOMBA, false);
+    gpio_set_level(PIN_PWM_LED_PAR, false);
+    gpio_set_level(PIN_PWM_LED_IMPAR, false);
+    gpio_set_level(PIN_PWM_INJ_IMPAR, false);
+    gpio_set_level(PIN_ADC_TENSAO_FONTE, false);
+    gpio_set_level(PIN_ADC_TECLADO, false);
+    gpio_set_level(PIN_OUTPUT_CONTROLE_IMPAR, false);
+    gpio_set_level(PIN_PWM_VALVULA, false);
+    gpio_set_level(PIN_PWM_ULTRASSOM, false);
+    gpio_set_level(PIN_PWM_BOMBA, false);
+    gpio_set_level(PIN_BUZZER, false);
+    gpio_set_level(PIN_PWM_INJ_PAR, false);
+    gpio_set_level(PIN_PWM_PROTECAO, false);
+    gpio_set_level(PIN_OUTPUT_CONTROLE_PAR, false);
+    
+}
+
+int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32_t max_out)
+{
+    if(max_in >= min_in && x >= max_in) return max_out;
+    if(max_in >= min_in && x <= min_in) return min_out;
+
+    if(max_in <= min_in && x <= max_in) return max_out;
+    if(max_in <= min_in && x >= min_in) return min_out;
+
+    /**
+     * The equation should be:
+     *   ((x - min_in) * delta_out) / delta in) + min_out
+     * To avoid rounding error reorder the operations:
+     *   (x - min_in) * (delta_out / delta_min) + min_out
+     */
+
+    int32_t delta_in = max_in - min_in;
+    int32_t delta_out = max_out - min_out;
+
+    return ((x - min_in) * delta_out) / delta_in + min_out;
 }

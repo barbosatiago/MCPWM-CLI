@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI
+# Install script for directory: C:/Users/Client/Desktop/MCPWM/sample_project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,12 +34,12 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "E:/Espressif/Espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32s3-elf-objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32s3-elf-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/esp-idf/cmake_install.cmake")
+  include("C:/Users/Client/Desktop/MCPWM/sample_project/build/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/tiago/OneDrive/Documentos/REPOSITORIOS/MCPWM-CLI/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Client/Desktop/MCPWM/sample_project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
